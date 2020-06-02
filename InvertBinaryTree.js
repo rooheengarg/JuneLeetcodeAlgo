@@ -45,18 +45,12 @@ var invertTree = function(root) {
         return null
     }
     
-    let right = null
-    let left = null
-    if(root.right){
-        right = invertTree(root.right); 
-    }
-    
-    if(root.left){
-        left = invertTree(root.left);
-    }
+   let tempLeftNode = root.left;
+   root.left = root.rght;
+   root.right = tempLeftNode;
 
-    root.left = right;
-    root.right = left;
-    return root;
+   invertTree(root.left);
+   invertTree(root.right);
+  return root;
     
 };
